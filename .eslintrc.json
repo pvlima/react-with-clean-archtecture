@@ -36,7 +36,9 @@
         "tsx": "never"
       }
     ],
+    "import/prefer-default-export": "off",
     "no-use-before-define": "off",
+    "no-useless-constructor": "off",
     "prettier/prettier": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
