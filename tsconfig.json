@@ -16,13 +16,9 @@
       "@/*": ["*"]
     },
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": false,
-    "noEmit": true,
-    "forceConsistentCasingInFileNames": true,
     "strict": false,
-    "skipLibCheck": true
   },
   "include": [
     "src"

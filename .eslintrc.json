@@ -43,6 +43,8 @@
     "no-use-before-define": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-filename-extension": [
@@ -56,6 +58,9 @@
     "react/react-in-jsx-scope": "off"
   },
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/resolver": {
       "typescript": {}
     }
