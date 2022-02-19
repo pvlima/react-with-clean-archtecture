@@ -24,10 +24,10 @@
     "prettier"
   ],
   "rules": {
-    "class-methods-use-this": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/strict-boolen-expressions": "off",
+    "class-methods-use-this": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -39,10 +39,12 @@
     ],
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react-hooks/exhaustive-deps": "warn",
