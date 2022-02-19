@@ -1,14 +1,11 @@
-import { Logo, Spinner } from '@/presentation/components';
 import React from 'react';
+import { Footer, LoginHeader, Spinner } from '@/presentation/components';
 import Styles from './login-styles.scss';
 
 export function Login() {
   return (
     <div className={Styles.login}>
-      <header className={Styles.header}>
-        <Logo />
-        <h1>Enquete para programadores</h1>
-      </header>
+      <LoginHeader />
       <form className={Styles.form}>
         <h2>Login</h2>
         <div className={Styles.inputWrap}>
@@ -42,7 +39,7 @@ export function Login() {
           <span className={Styles.error}>Erro</span>
         </div>
       </form>
-      <footer className={Styles.footer} />
+      <Footer />
     </div>
   );
 }
