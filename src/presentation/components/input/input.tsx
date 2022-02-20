@@ -15,11 +15,11 @@ export function Input({ name, ...props }: InputProps) {
   }
 
   function getStatus(): string {
-    return '🔴';
+    return error ? '🔴' : '🟢';
   }
 
   function getTitle(): string {
-    return error;
+    return error || 'Tudo certo';
   }
 
   function handleChange(e: React.FocusEvent<HTMLInputElement>) {
