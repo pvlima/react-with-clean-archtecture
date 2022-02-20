@@ -7,13 +7,15 @@ import {
 } from '@/presentation/components';
 import { FormContextProvider } from '@/presentation/contexts';
 import { Validation } from '@/presentation/protocols';
+import { Authentication } from '@/domain/usecases';
 import Styles from './login-styles.scss';
 
 type LoginProps = {
   validation: Validation;
+  authentication: Authentication;
 };
 
-export function Login({ validation }: LoginProps) {
+export function Login({ validation, authentication }: LoginProps) {
   const [state, setState] = useState({
     isLoading: false,
     email: '',
@@ -31,9 +33,10 @@ export function Login({ validation }: LoginProps) {
     }));
   }, [validation, state.email, state.password]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState(currentState => ({ ...currentState, isLoading: true }));
+    await authentication.auth({ email: state.email, password: state.password });
   }
 
   return (
