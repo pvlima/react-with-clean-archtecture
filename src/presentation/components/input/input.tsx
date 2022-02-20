@@ -7,8 +7,8 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export function Input({ name, ...props }: InputProps) {
-  const { errorState } = useForm();
-  const error = errorState[`${name}`];
+  const { state, setState } = useForm();
+  const error = state[`${name}Error`];
 
   function enableInput(e: React.FocusEvent<HTMLInputElement>) {
     e.target.readOnly = false;
@@ -22,15 +22,21 @@ export function Input({ name, ...props }: InputProps) {
     return error;
   }
 
+  function handleChange(e: React.FocusEvent<HTMLInputElement>) {
+    setState(current => ({ ...current, [name]: e.target.value }));
+  }
+
   return (
     <div className={Styles.inputWrap}>
       <input
         id={name}
         name={name}
+        data-testid={name}
         {...props}
         readOnly
         onFocus={enableInput}
         autoComplete="off"
+        onChange={handleChange}
       />
       <label
         data-testid={`${name}-status`}
