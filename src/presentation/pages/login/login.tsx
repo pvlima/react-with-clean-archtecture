@@ -48,7 +48,7 @@ export function Login({ validation }: LoginProps) {
             data-testid="submit"
             type="submit"
             className={Styles.submit}
-            disabled
+            disabled={!!state.emailError || !!state.passwordError}
           >
             Entrar
           </button>
