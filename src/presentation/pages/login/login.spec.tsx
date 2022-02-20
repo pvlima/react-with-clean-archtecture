@@ -1,17 +1,38 @@
 import React from 'react';
-import { render, RenderResult } from '@testing-library/react';
+import {
+  render,
+  RenderResult,
+  fireEvent,
+  cleanup,
+} from '@testing-library/react';
+import { Validation } from '@/presentation/protocols';
 import { Login } from './login';
+
+class ValidationSpy implements Validation {
+  errorMessage: string;
+
+  input: object;
+
+  validate(input: object): string {
+    this.input = input;
+    return this.errorMessage;
+  }
+}
 
 type SutTypes = {
   sut: RenderResult;
+  validationSpy: ValidationSpy;
 };
 
-function makeSut() {
-  const sut = render(<Login />);
-  return { sut };
+function makeSut(): SutTypes {
+  const validationSpy = new ValidationSpy();
+  const sut = render(<Login validation={validationSpy} />);
+  return { sut, validationSpy };
 }
 
 describe('Login Component', () => {
+  afterEach(cleanup);
+
   it('should start with initial state', () => {
     const { sut } = makeSut();
     const errorWrap = sut.getByTestId('error-wrap');
@@ -26,5 +47,14 @@ describe('Login Component', () => {
     ) as HTMLInputElement;
     expect(passwordStatus.title).toBe('Campo obrigatório');
     expect(passwordStatus.textContent).toBe('🔴');
+  });
+
+  it('should call Validation with correct email', () => {
+    const { sut, validationSpy } = makeSut();
+    const emailInput = sut.getByTestId('email');
+    fireEvent.input(emailInput, { target: { value: 'any_email' } });
+    expect(validationSpy.input).toEqual({
+      email: 'any_email',
+    });
   });
 });
