@@ -31,11 +31,16 @@ export function Login({ validation }: LoginProps) {
     }));
   }, [validation, state.email, state.password]);
 
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setState(currentState => ({ ...currentState, isLoading: true }));
+  }
+
   return (
     <div className={Styles.login}>
       <LoginHeader />
       <FormContextProvider value={{ state, setState }}>
-        <form className={Styles.form}>
+        <form className={Styles.form} onSubmit={handleSubmit}>
           <h2>Login</h2>
           <Input name="email" type="email" placeholder="Digite seu email" />
           <Input
