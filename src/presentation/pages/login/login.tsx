@@ -19,7 +19,7 @@ export function Login({ validation }: LoginProps) {
     email: '',
     password: '',
     emailError: '',
-    passwordError: 'Campo obrigatório',
+    passwordError: '',
     mainError: '',
   });
 
@@ -27,12 +27,9 @@ export function Login({ validation }: LoginProps) {
     setState(currentState => ({
       ...currentState,
       emailError: validation.validate('email', state.email),
+      passwordError: validation.validate('password', state.password),
     }));
-  }, [validation, state.email]);
-
-  useEffect(() => {
-    validation.validate('password', state.password);
-  }, [validation, state.password]);
+  }, [validation, state.email, state.password]);
 
   return (
     <div className={Styles.login}>
