@@ -1,8 +1,14 @@
 import React, { createContext, useContext } from 'react';
 
 type FormContextData = {
-  isLoading: boolean;
-  errorMessage?: string;
+  state: {
+    isLoading: boolean;
+  };
+  errorState: {
+    email?: string;
+    password?: string;
+    main?: string;
+  };
 };
 
 const FormContext = createContext<FormContextData>(null);

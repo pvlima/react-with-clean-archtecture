@@ -5,24 +5,24 @@ import {
   Input,
   LoginHeader,
 } from '@/presentation/components';
-import { FormContextProvider } from '@/presentation/contexts/form/form-context';
+import { FormContextProvider } from '@/presentation/contexts';
 import Styles from './login-styles.scss';
 
-type StateProps = {
-  isLoading: boolean;
-  errorMessage: string;
-};
-
 export function Login() {
-  const [state] = useState<StateProps>({
+  const [state] = useState({
     isLoading: false,
-    errorMessage: '',
+  });
+
+  const [errorState] = useState({
+    email: 'Campo obrigatório',
+    password: 'Campo obrigatório',
+    main: '',
   });
 
   return (
     <div className={Styles.login}>
       <LoginHeader />
-      <FormContextProvider value={state}>
+      <FormContextProvider value={{ state, errorState }}>
         <form className={Styles.form}>
           <h2>Login</h2>
           <Input name="email" type="email" placeholder="Digite seu email" />
