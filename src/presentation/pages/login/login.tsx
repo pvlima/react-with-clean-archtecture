@@ -27,6 +27,10 @@ export function Login({ validation }: LoginProps) {
     validation.validate({ email: state.email });
   }, [validation, state.email]);
 
+  useEffect(() => {
+    validation.validate({ password: state.password });
+  }, [validation, state.password]);
+
   return (
     <div className={Styles.login}>
       <LoginHeader />
