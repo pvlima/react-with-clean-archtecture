@@ -38,10 +38,11 @@ export function Login({ validation, authentication }: LoginProps) {
     try {
       if (state.isLoading || state.emailError || state.passwordError) return;
       setState(currentState => ({ ...currentState, isLoading: true }));
-      await authentication.auth({
+      const account = await authentication.auth({
         email: state.email,
         password: state.password,
       });
+      localStorage.setItem('accessToken', account.accessToken);
     } catch (e) {
       setState(currentState => ({
         ...currentState,
