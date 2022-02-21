@@ -35,7 +35,7 @@ export function Login({ validation, authentication }: LoginProps) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (state.isLoading) return;
+    if (state.isLoading || state.emailError || state.passwordError) return;
     setState(currentState => ({ ...currentState, isLoading: true }));
     await authentication.auth({ email: state.email, password: state.password });
   }
@@ -44,7 +44,11 @@ export function Login({ validation, authentication }: LoginProps) {
     <div className={Styles.login}>
       <LoginHeader />
       <FormContextProvider value={{ state, setState }}>
-        <form className={Styles.form} onSubmit={handleSubmit}>
+        <form
+          data-testid="form"
+          className={Styles.form}
+          onSubmit={handleSubmit}
+        >
           <h2>Login</h2>
           <Input name="email" type="email" placeholder="Digite seu email" />
           <Input
