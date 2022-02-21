@@ -35,9 +35,20 @@ export function Login({ validation, authentication }: LoginProps) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (state.isLoading || state.emailError || state.passwordError) return;
-    setState(currentState => ({ ...currentState, isLoading: true }));
-    await authentication.auth({ email: state.email, password: state.password });
+    try {
+      if (state.isLoading || state.emailError || state.passwordError) return;
+      setState(currentState => ({ ...currentState, isLoading: true }));
+      await authentication.auth({
+        email: state.email,
+        password: state.password,
+      });
+    } catch (e) {
+      setState(currentState => ({
+        ...currentState,
+        isLoading: false,
+        mainError: e.message,
+      }));
+    }
   }
 
   return (
