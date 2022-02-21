@@ -1,4 +1,4 @@
-import { useForm } from '@/presentation/contexts';
+import { useFormContext } from '@/presentation/contexts';
 import React from 'react';
 import Styles from './input-styles.scss';
 
@@ -7,7 +7,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export function Input({ name, ...props }: InputProps) {
-  const { state, setState } = useForm();
+  const { state, setState } = useFormContext();
   const error = state[`${name}Error`];
 
   function enableInput(e: React.FocusEvent<HTMLInputElement>) {
