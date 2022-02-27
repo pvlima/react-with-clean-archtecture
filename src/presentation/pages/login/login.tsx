@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Footer,
   FormStatus,
@@ -17,6 +17,7 @@ type LoginProps = {
 };
 
 export function Login({ validation, authentication }: LoginProps) {
+  const history = useHistory();
   const [state, setState] = useState({
     isLoading: false,
     email: '',
@@ -44,6 +45,7 @@ export function Login({ validation, authentication }: LoginProps) {
         password: state.password,
       });
       localStorage.setItem('accessToken', account.accessToken);
+      history.replace('/');
     } catch (e) {
       setState(currentState => ({
         ...currentState,
