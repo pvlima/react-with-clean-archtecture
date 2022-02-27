@@ -23,7 +23,7 @@ type SutParams = {
   validationError: string;
 };
 
-const history = createMemoryHistory();
+const history = createMemoryHistory({ initialEntries: ['/login'] });
 function makeSut(params?: SutParams): SutTypes {
   const validationStub = new ValidationStub();
   validationStub.errorMessage = params?.validationError;
@@ -180,6 +180,8 @@ describe('Login Component', () => {
       'accessToken',
       authenticationSpy.account.accessToken,
     );
+    expect(history.length).toBe(1);
+    expect(history.location.pathname).toBe('/');
   });
 
   it('should go to signup page', async () => {
