@@ -3,7 +3,7 @@ import { Validation } from '@/presentation/protocols';
 import { FieldValidation } from '@/validation/protocols';
 
 export class ValidationComposite implements Validation {
-  constructor(private readonly validators: FieldValidation[]) {}
+  private constructor(private readonly validators: FieldValidation[]) {}
 
   validate(fieldName: string, fieldValue: string): string {
     const validators = this.validators.filter(v => v.field === fieldName);
@@ -13,5 +13,9 @@ export class ValidationComposite implements Validation {
       if (error) return error.message;
     }
     return null;
+  }
+
+  static build(validators: FieldValidation[]) {
+    return new ValidationComposite(validators);
   }
 }
