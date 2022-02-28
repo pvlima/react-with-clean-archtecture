@@ -1,3 +1,4 @@
+import faker from 'faker';
 import { FieldValidationSpy } from '@/validation/test';
 import { ValidationComposite } from './validation-composite';
 
@@ -13,18 +14,19 @@ function makeSut(fieldName: string) {
 
 describe('ValidationComposite', () => {
   it('should return error if any validation fails', () => {
-    const fieldName = 'any_field';
+    const fieldName = faker.database.column();
     const { sut, fieldValidationsSpy } = makeSut(fieldName);
-    fieldValidationsSpy[0].error = new Error('first_message_error');
-    fieldValidationsSpy[1].error = new Error('second_message_error');
-    const messageError = sut.validate(fieldName, 'any_value');
-    expect(messageError).toBe('first_message_error');
+    const messageError = faker.random.words();
+    fieldValidationsSpy[0].error = new Error(messageError);
+    fieldValidationsSpy[1].error = new Error(faker.random.words());
+    const error = sut.validate(fieldName, faker.random.word());
+    expect(error).toBe(messageError);
   });
 
   it('should return falsy if none validation fails', () => {
-    const fieldName = 'any_field';
+    const fieldName = faker.database.column();
     const { sut } = makeSut(fieldName);
-    const messageError = sut.validate(fieldName, 'any_value');
+    const messageError = sut.validate(fieldName, faker.random.word());
     expect(messageError).toBeFalsy();
   });
 });
