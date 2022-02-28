@@ -1,7 +1,9 @@
 import { FieldValidation } from '@/validation/protocols';
-import { RequiredFieldValidation } from '@/validation/validators';
-import { EmailValidation } from '../email/email-validation';
-import { MinLengthValidation } from '../min-length/min-length-validation';
+import {
+  RequiredFieldValidation,
+  EmailValidation,
+  MinLengthValidation,
+} from '@/validation/validators';
 
 export class ValidationBuilder {
   private constructor(

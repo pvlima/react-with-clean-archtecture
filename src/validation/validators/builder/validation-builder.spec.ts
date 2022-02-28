@@ -2,9 +2,9 @@ import faker from 'faker';
 import {
   RequiredFieldValidation,
   EmailValidation,
+  MinLengthValidation,
 } from '@/validation/validators';
 import { ValidationBuilder as sut } from './validation-builder';
-import { MinLengthValidation } from '../min-length/min-length-validation';
 
 describe('ValidationBuilder', () => {
   it('should return RequiredFieldValidation', () => {
