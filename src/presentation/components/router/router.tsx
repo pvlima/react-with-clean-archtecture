@@ -1,12 +1,15 @@
 import React from 'react';
-import { Login } from '@/presentation/pages';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-export function Router() {
+type RouterProps = {
+  makeLogin: React.ComponentType;
+};
+
+export function Router({ makeLogin }: RouterProps) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={makeLogin} />
       </Switch>
     </BrowserRouter>
   );
