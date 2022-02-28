@@ -20,4 +20,11 @@ describe('ValidationComposite', () => {
     const messageError = sut.validate(fieldName, 'any_value');
     expect(messageError).toBe('first_message_error');
   });
+
+  it('should return falsy if none validation fails', () => {
+    const fieldName = 'any_field';
+    const { sut } = makeSut(fieldName);
+    const messageError = sut.validate(fieldName, 'any_value');
+    expect(messageError).toBeFalsy();
+  });
 });
