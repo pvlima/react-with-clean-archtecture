@@ -27,4 +27,15 @@ describe('ValidationBuilder', () => {
     expect(validations.length).toBe(1);
     expect(validations).toEqual([new MinLengthValidation(fieldName, 5)]);
   });
+
+  it('should return a list of validators', () => {
+    const fieldName = faker.database.column();
+    const validations = sut.field(fieldName).min(5).email().required().build();
+    expect(validations.length).toBe(3);
+    expect(validations).toEqual([
+      new MinLengthValidation(fieldName, 5),
+      new EmailValidation(fieldName),
+      new RequiredFieldValidation(fieldName),
+    ]);
+  });
 });
