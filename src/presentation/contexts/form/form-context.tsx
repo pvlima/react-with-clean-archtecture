@@ -25,7 +25,5 @@ export const FormContextProvider: React.FC<{ value: FormContextData }> = ({
 
 export function useFormContext(): FormContextData {
   const context = useContext(FormContext);
-  if (!context)
-    throw new Error('useForm() must be used within FormContextProvider');
   return context;
 }

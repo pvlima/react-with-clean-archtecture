@@ -24,7 +24,6 @@ export class RemoteAuthentication implements Authentication {
     switch (response.statusCode) {
       case HttpStatusCode.ok:
         return response.body;
-        break;
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       case HttpStatusCode.notFound:
@@ -32,7 +31,6 @@ export class RemoteAuthentication implements Authentication {
 
       default:
         throw new UnexpectedError();
-        break;
     }
   }
 }
